@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator | Javascript Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="head">
+            <h1>Charles' Tip Calculator</h1>
+        </div>
+        <div class="info">
+            <p class="bill">How much was your Bill?</p>
+            <span style="margin-right: 10px;">$</span><input id="bill_amount" type="text">
+            <p class="service">How was your Service?</p>
+            <select id="rating">
+                <option value="0">Rate the service</option>
+                <option value="30">30% - Best</option>
+                <option value="20">20% - Good</option>
+                <option value="15">15% - Fine</option>
+                <option value="10">10% - Bad</option>
+                <option value="5">5% - Very Bad</option>
+            </select>
+            <p class="people">How many people are sharing the bill?</p>
+            <input id="numpeople" type="text"><span style="margin-left: 10px;">people</span><br>
+        </div>
+        <div class="output">
+            <button onclick="tip_cal()">CALCULATE!</button>
+            <p>TIP AMOUNT</p>
+            <p id="display"></p>
+        </div>
+    </div>
+    <script>
+        function tip_cal(){
+            var total_expenditure = document.getElementById("bill_amount").value;
+            let service_type = document.getElementById("rating");
+            var service_points = service_type.value;
+            var tip_without = total_expenditure*service_points/100;
+            var num_people = document.getElementById("numpeople").value;
+            if (num_people == ""){
+                document.getElementById("display").innerHTML= (`$ ${tip_without} overall`);
+            }
+            else{
+                var tip_with = tip_without/num_people;
+                document.getElementById("display").innerHTML= (`$ ${tip_with} per person`);
+            }
+        }
+    </script>
+</body>
+
+</html>
